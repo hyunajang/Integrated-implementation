@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserDAO">
+	<resultMap id="userResult" type="user">
+		<id property="uNo" column="u_no"/>
+		<result property="uName" column="u_name"/>
+		<result property="uEmail" column="u_email"/>
+		<result property="uPwd" column="u_pwd"/>
+		<result property="uPhone" column="u_phone"/>
+		<result property="uAddress" column="u_address"/>
+		<result property="uAgreecheck" column="u_agreecheck"/>
+		<result property="uPic" column="u_pic"/>
+		<result property="uNick" column="u_nick"/>
+	</resultMap>
+	
+	<!-- INSERT Start -->
+	<insert id="insertUser">		
+		INSERT INTO users(u_no, u_name, u_email, u_pwd, u_phone, u_address, u_agreecheck, u_pic, u_nick)
+		VALUES (#{uNo},#{uName},#{uEmail},#{uPwd},#{uPhone},#{uAddress},#{uAgreecheck},#{uPic},#{uNick})
+	</insert>
+	<!-- INSERT End -->
+	
+	<select id="getUser" resultMap="userResult">
+		SELECT * FROM users WHERE u_email = #{uEmail} AND u_pwd = #{uPwd}
+	</select>
+</mapper>
